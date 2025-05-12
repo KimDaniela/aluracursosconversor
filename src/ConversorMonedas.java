@@ -6,8 +6,7 @@ import org.json.JSONObject;
 
 public class ConversorMonedas {
 
-    // Método para convertir cualquier moneda a USD
-    public double convertirADolar(double monto, String from) {
+        public double convertirADolar(double monto, String from) {
         try {
             String urlStr = String.format(
                     "https://v6.exchangerate-api.com/v6/7aca1063e8a9dba8ac07157d/latest/%s", from);
@@ -15,7 +14,7 @@ public class ConversorMonedas {
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
-            // Leer la respuesta
+
             BufferedReader reader = new BufferedReader(
                     new InputStreamReader(conn.getInputStream()));
             StringBuilder response = new StringBuilder();
@@ -25,10 +24,10 @@ public class ConversorMonedas {
             }
             reader.close();
 
-            // Convertir la respuesta a un objeto JSON
+
             JSONObject jsonResponse = new JSONObject(response.toString());
 
-            // Verificar si la respuesta es exitosa
+
             if (jsonResponse.getString("result").equals("success")) {
                 // Obtener la tasa de conversión de la moneda de origen a USD
                 JSONObject rates = jsonResponse.getJSONObject("conversion_rates");
@@ -46,7 +45,7 @@ public class ConversorMonedas {
         }
     }
 
-    // Método para convertir de USD a cualquier otra moneda
+
     public double convertirDeDolar(double monto, String to) {
         try {
             String urlStr = String.format(
